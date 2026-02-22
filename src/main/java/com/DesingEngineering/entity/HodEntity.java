@@ -15,7 +15,6 @@ public class HodEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer hodId;
 	private String hodName;
-	@Column(unique = true,nullable = false)
 	private String hodEmail;
 	private String hpassWord;
 	private String branch; //fk

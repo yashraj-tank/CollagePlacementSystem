@@ -2,7 +2,6 @@ package com.DesingEngineering.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,10 +15,8 @@ public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer studentId;
-	@Column(unique = true,nullable = false)
 	private String enrollmentNum;
 	private String studentName;
-	@Column(unique = true)
 	private String email;
 	private String contactNum;
 	private String password;

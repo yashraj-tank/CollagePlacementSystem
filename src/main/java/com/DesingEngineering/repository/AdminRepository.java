@@ -7,5 +7,11 @@ import com.DesingEngineering.entity.AdminEntity;
 
 @Repository
 public interface AdminRepository extends JpaRepository<AdminEntity, Integer> {
+	
+	//Find admin by email
+    AdminEntity findByAdminEmail(String adminEmail);
+    
+    // Check if email exists
+    boolean existsByAdminEmail(String adminEmail);
 
 }

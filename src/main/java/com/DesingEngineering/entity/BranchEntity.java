@@ -14,7 +14,6 @@ public class BranchEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer branchId;
-	@Column(unique = true,nullable = false)
 	private String branchName;
 	
 	public Integer getBranchId() {

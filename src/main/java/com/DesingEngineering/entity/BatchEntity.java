@@ -1,6 +1,5 @@
 package com.DesingEngineering.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,8 +13,8 @@ public class BatchEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer batchId;
-	@Column(unique = true,nullable = false)
 	private String batchYear;
+	
 	public Integer getBatchId() {
 		return batchId;
 	}

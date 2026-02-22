@@ -15,7 +15,6 @@ public class AdminEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer adminId;
 	private String adminName;
-	@Column(unique = true,nullable = false)
 	private String adminEmail;
 	private String apassWord;
 	
