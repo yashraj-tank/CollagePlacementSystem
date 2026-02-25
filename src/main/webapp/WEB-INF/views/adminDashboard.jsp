@@ -297,7 +297,7 @@
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <div class="dashboard-header">
-            <h1>Welcome back, Admin!</h1>
+            <h1>Welcome back, ${sessionScope.admin.adminName}!</h1>
             <p>Here's what's happening with your institute today.</p>
         </div>
 

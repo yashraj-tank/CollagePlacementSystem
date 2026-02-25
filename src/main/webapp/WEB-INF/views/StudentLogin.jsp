@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,6 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* Background image with dark overlay */
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('images1/deim.jpeg') no-repeat center center fixed;
             background-size: cover;
@@ -25,15 +25,14 @@
             padding: 20px;
         }
 
-        /* Login container – blue theme */
         .login-form {
-            background-color: #3498db; /* Bright blue */
+            background-color: #3498db;
             color: #fff;
             padding: 30px 40px;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.3);
             width: 100%;
-            max-width: 400px; /* Slightly narrower than signup */
+            max-width: 400px;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -81,7 +80,6 @@
             background-color: #1f618d;
         }
 
-        /* Sign‑up link styling */
         .signup-link {
             text-align: center;
             margin-top: 20px;
@@ -98,40 +96,60 @@
             color: #f0f0f0;
         }
 
-        /* Optional small hint */
-        .hint {
-            font-size: 12px;
-            color: #d1ecf1;
-            margin-top: 5px;
+        .error-message {
+            background-color: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         @media (max-width: 480px) {
             .login-form {
                 padding: 20px;
             }
+			.success-message {
+			    background-color: #27ae60;
+			    color: white;
+			    padding: 10px;
+			    border-radius: 5px;
+			    margin-bottom: 20px;
+			    text-align: center;
+			}
         }
     </style>
 </head>
 <body>
     <div class="login-form">
         <h2>Student Login</h2>
-        <!-- Login form (adjust action to your login servlet) -->
-        <form action="" method="post">
-            <!-- Email -->
+        
+        <c:if test="${not empty success}">
+    		<div class="success-message">${success}</div>
+		</c:if>
+        
+        <c:if test="${not empty error}">
+            <div class="error-message">${error}</div>
+        </c:if>
+        
+        <!-- Login form -->
+        <form action="${pageContext.request.contextPath}/studentlogin" method="post">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" required>
 
-            <!-- Password -->
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-            <!-- Login Button -->
             <button type="submit">Log In</button>
         </form>
 
         <!-- Link to Sign Up page -->
         <div class="signup-link">
-            Don't have an account? <a href="/studentsingup">Login here</a>
+            Don't have an account? <a href="${pageContext.request.contextPath}/studentsingup">Sign up here</a>
+        </div>
+        <div class="signup-link">
+            For Get PassWord? <a href="${pageContext.request.contextPath}/studentforgetpassword">Click here</a>
         </div>
     </div>
 </body>

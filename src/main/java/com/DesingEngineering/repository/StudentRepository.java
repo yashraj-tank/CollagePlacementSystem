@@ -32,5 +32,7 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Integer>
     // Optional: Get students by branch with count
     @Query(value = "SELECT branch, COUNT(*) FROM students GROUP BY branch", nativeQuery = true)
     List<Object[]> countStudentsByBranch();
+    
+    StudentEntity findByEmail(String email);   // for login
 
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.DesingEngineering.entity.AdminEntity;
 import com.DesingEngineering.repository.AdminRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class AdminSingController {
 	
@@ -64,18 +66,25 @@ public class AdminSingController {
     public String loginAdmin(
             @RequestParam("adminEmail") String adminEmail,
             @RequestParam("apassWord") String apassWord,
-            Model model) {
+            Model model,HttpSession session) {
         
         AdminEntity admin = adminRepository.findByAdminEmail(adminEmail);
         
         if (admin != null && admin.getApassWord().equals(apassWord)) {
             // Successful login
             model.addAttribute("admin", admin);
+            session.setAttribute("admin", admin);
             return "redirect:/admin/dashboard";
         } else {
             model.addAttribute("error", "Invalid email or password!");
             return "adminLogin";
         }
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "adminLogin";
     }
 }
 
