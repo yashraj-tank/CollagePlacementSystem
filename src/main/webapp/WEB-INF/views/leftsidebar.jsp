@@ -203,35 +203,25 @@
                 <span>HODs</span>
                 <span class="menu-badge">${hodCount}</span>
             </a>
+            
+            <div class="menu-divider"></div>
+			<div class="menu-title">PLACEMENT</div>
+				<a href="${pageContext.request.contextPath}/admin/companies" class="menu-item">
+  				<i>🏢</i>
+    		<span>Companies</span>
+			</a>
+			<a href="${pageContext.request.contextPath}/admin/applications" class="menu-item">
+    		<i>📝</i>
+   			<span>Applications</span>
+			</a>
 
             <div class="menu-divider"></div>
             <div class="menu-title">REPORTS</div>
-            
-            <a href="#" class="menu-item">
-                <i>📈</i>
-                <span>Attendance</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i>📊</i>
-                <span>Performance</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i>💰</i>
-                <span>Fees</span>
-            </a>
-
-            <div class="menu-divider"></div>
-            <div class="menu-title">SETTINGS</div>
-            
-            <a href="#" class="menu-item">
-                <i>⚙️</i>
-                <span>Settings</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i>❓</i>
-                <span>Help</span>
-            </a>
-        </div>
+            <a href="${pageContext.request.contextPath}/admin/reports" class="menu-item">
+   				 <i>📈</i>
+    			 <span>Reports</span>
+			</a>
+       		 </div>
 
         <div class="sidebar-footer">
             <p>© 2026 Design Engineering</p>

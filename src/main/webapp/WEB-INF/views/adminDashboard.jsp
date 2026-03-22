@@ -384,44 +384,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <!-- Recent Activity -->
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>Recent Activity</h3>
-                    <a href="#">View All</a>
-                </div>
-                <ul class="activity-list">
-                    <li class="activity-item">
-                        <div class="activity-icon">👤</div>
-                        <div class="activity-details">
-                            <p>New student registration</p>
-                            <span class="activity-time">5 minutes ago</span>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon">📅</div>
-                        <div class="activity-details">
-                            <p>Batch 2026-2027 created</p>
-                            <span class="activity-time">1 hour ago</span>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon">🏫</div>
-                        <div class="activity-details">
-                            <p>New branch added: AI & ML</p>
-                            <span class="activity-time">3 hours ago</span>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon">📝</div>
-                        <div class="activity-details">
-                            <p>Student profile updated</p>
-                            <span class="activity-time">5 hours ago</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
 
         <!-- Quick Actions (added Faculty & HOD links) -->

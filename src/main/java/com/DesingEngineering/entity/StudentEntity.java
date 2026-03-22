@@ -28,7 +28,14 @@ public class StudentEntity {
 	private String resumeURL;
 	private String otp;
 	private Boolean active;
+	private Boolean status = false;
 	
+	public Boolean getStatus() {
+		return status;
+	}
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 	public Integer getStudentId() {
 		return studentId;
 	}

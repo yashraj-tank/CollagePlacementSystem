@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.DesingEngineering.entity.BranchEntity;
+import com.DesingEngineering.repository.BatchRepository;
 import com.DesingEngineering.repository.BranchRepository;
 import com.DesingEngineering.repository.FacultyRepository; // for sidebar counts
 import com.DesingEngineering.repository.HodRepository;     // for sidebar counts
+import com.DesingEngineering.repository.StudentRepository;
 
 @Controller
 public class BranchController {
@@ -26,11 +28,20 @@ public class BranchController {
 
     @Autowired
     private HodRepository hodRepository;
+    
+    @Autowired
+    StudentRepository studentRepository;
+    
+    @Autowired
+    BatchRepository batchRepository;
 
     // Helper to add sidebar attributes
     private void addSidebarAttributes(Model model) {
         model.addAttribute("facultyCount", facultyRepository.count());
         model.addAttribute("hodCount", hodRepository.count());
+        model.addAttribute("studentCount", studentRepository.count());
+        model.addAttribute("batchCount", batchRepository.count());
+        model.addAttribute("branchCount", branchRepository.count());
         // Other counts (student, batch) are added by their respective controllers
     }
 

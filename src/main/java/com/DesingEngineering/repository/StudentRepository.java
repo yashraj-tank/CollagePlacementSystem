@@ -8,31 +8,40 @@ import org.springframework.stereotype.Repository;
 
 import com.DesingEngineering.entity.StudentEntity;
 
-
-
 @Repository
 public interface StudentRepository extends JpaRepository<StudentEntity, Integer> {
-	
-	// Find students by both branch and batch
-    List<StudentEntity> findByBranchAndBatch(String branch, String batch);
 
-    // Find students by branch only
+    // ========== Authentication ==========
+    StudentEntity findByEmail(String email);
+
+    // ========== Filters (branch, batch, faculty) ==========
     List<StudentEntity> findByBranch(String branch);
-
-    // Find students by batch only
     List<StudentEntity> findByBatch(String batch);
-    
-    // Count active/inactive students
+    List<StudentEntity> findByBranchAndBatch(String branch, String batch);
+    List<StudentEntity> findByBranchAndFaculty(String branch, String facultyName);
+    List<StudentEntity> findByBranchAndFacultyIsNull(String branch);
+
+    // ========== Counts ==========
     long countByActive(boolean active);
-    
-    // Get recent students (last 5) - Using correct table name "students"
+    long countByBranchAndFacultyIsNull(String branch);
+
+    // ========== Aggregated Reports ==========
+    @Query(value = "SELECT branch, COUNT(*) FROM students GROUP BY branch", nativeQuery = true)
+    List<Object[]> countStudentsByBranch();
+
+    // ========== Recent Records ==========
     @Query(value = "SELECT * FROM students ORDER BY created_at DESC LIMIT 5", nativeQuery = true)
     List<StudentEntity> findRecentStudents();
     
-    // Optional: Get students by branch with count
-    @Query(value = "SELECT branch, COUNT(*) FROM students GROUP BY branch", nativeQuery = true)
-    List<Object[]> countStudentsByBranch();
+   
     
-    StudentEntity findByEmail(String email);   // for login
+ // Count verified (status = true)
+    long countByStatusTrue();
 
+    // Count rejected (status = false)
+    long countByStatusFalse();
+
+    // Count pending (status is null)
+    @Query("SELECT COUNT(s) FROM StudentEntity s WHERE s.status IS NULL")
+    long countByStatusIsNull();
 }

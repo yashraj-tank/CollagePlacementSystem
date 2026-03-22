@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.DesingEngineering.entity.BatchEntity;
 import com.DesingEngineering.repository.BatchRepository;
+import com.DesingEngineering.repository.BranchRepository;
 import com.DesingEngineering.repository.FacultyRepository; // for sidebar counts
 import com.DesingEngineering.repository.HodRepository;     // for sidebar counts
+import com.DesingEngineering.repository.StudentRepository;
 
 @Controller
 public class BatchController {
@@ -23,6 +25,12 @@ public class BatchController {
     // For sidebar badges (optional but recommended)
     @Autowired
     private FacultyRepository facultyRepository;
+    
+    @Autowired
+    StudentRepository studentRepository;
+    
+    @Autowired
+    BranchRepository branchRepository;
 
     @Autowired
     private HodRepository hodRepository;
@@ -31,6 +39,9 @@ public class BatchController {
     private void addSidebarAttributes(Model model) {
         model.addAttribute("facultyCount", facultyRepository.count());
         model.addAttribute("hodCount", hodRepository.count());
+        model.addAttribute("studentCount", studentRepository.count());
+        model.addAttribute("batchCount", batchRepository.count());
+        model.addAttribute("branchCount", branchRepository.count());
         // studentCount, batchCount, branchCount should be added by their own controllers
         // but if needed, you can inject those repositories and add them here.
     }

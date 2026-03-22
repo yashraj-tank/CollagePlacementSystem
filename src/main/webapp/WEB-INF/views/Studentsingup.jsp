@@ -124,7 +124,7 @@
     <div class="signup-form">
         <h2>Student Sign Up</h2>
         <!-- Form with file upload support -->
-        <form action="savestudent" method="post">
+        <form action="savestudent" method="post" enctype="multipart/form-data">
             <!-- Full Name -->
             <label for="name">Full Name</label>
             <input type="text" id="name" name="studentName" placeholder="Enter your full name" required>
@@ -167,15 +167,6 @@
 			    </div>
 			</div>
 
-            <!-- Profile Picture -->
-            <label for="profilePic">Profile Picture</label>
-            <input type="file" id="profilePic" name="profilePic" accept="image/*" >
-            <div class="hint">Upload a square image (JPEG, PNG).</div>
-
-            <!-- Resume Upload -->
-            <label for="resume">Resume (PDF/DOC)</label>
-            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" >
-            <div class="hint">Max size 2MB.</div>
 
             <!-- Submit Button -->
             <button type="submit">Sign Up</button>
