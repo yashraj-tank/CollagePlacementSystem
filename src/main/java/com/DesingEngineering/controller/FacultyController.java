@@ -159,9 +159,16 @@ public class FacultyController {
 
     // -------------------- List All Faculty (Admin only) --------------------
     @GetMapping("/listfaculty")
-    public String listAllFaculty(Model model) {
-        List<FacultyEntity> facultyList = facultyRepository.findAll();
+    public String listAllFaculty(@RequestParam(required = false) String branch, Model model) {
+        List<FacultyEntity> facultyList;
+        if (branch != null && !branch.isEmpty()) {
+            facultyList = facultyRepository.findByBranch(branch);
+        } else {
+            facultyList = facultyRepository.findAll();
+        }
         model.addAttribute("facultyList", facultyList);
+        model.addAttribute("branches", branchRepository.findAll());
+        model.addAttribute("selectedBranch", branch);
         addSidebarAttributes(model);
         return "facultyList";
     }
@@ -207,18 +214,25 @@ public class FacultyController {
     }
     
     @GetMapping("/faculty/students")
-    public String listMyStudents(HttpSession session, Model model) {
+    public String listMyStudents(@RequestParam(required = false) String batch,
+                                 HttpSession session, Model model) {
         FacultyEntity faculty = (FacultyEntity) session.getAttribute("faculty");
         if (faculty == null) return "redirect:/facultylogin";
 
-        List<StudentEntity> assignedStudents = studentRepository.findByBranchAndFaculty(
-            faculty.getBranch(),
-            faculty.getFacultyName()
-        );
+        List<StudentEntity> assignedStudents;
+        if (batch != null && !batch.isEmpty()) {
+            assignedStudents = studentRepository.findByBranchAndFacultyAndBatch(
+                faculty.getBranch(), faculty.getFacultyName(), batch);
+        } else {
+            assignedStudents = studentRepository.findByBranchAndFaculty(
+                faculty.getBranch(), faculty.getFacultyName());
+        }
 
         model.addAttribute("faculty", faculty);
         model.addAttribute("studentList", assignedStudents);
         model.addAttribute("studentCount", assignedStudents.size());
+        model.addAttribute("batches", batchRepository.findAll());      // for dropdown
+        model.addAttribute("selectedBatch", batch);                   // to pre-select
 
         return "faculty/facultyStudentList";
     }
@@ -287,4 +301,6 @@ public class FacultyController {
         model.addAttribute("studentCount", assignedStudents.size());
         return "faculty/facultyCompanyList";
     }
+    
+    
 }

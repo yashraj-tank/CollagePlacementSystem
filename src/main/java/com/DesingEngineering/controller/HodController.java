@@ -167,19 +167,28 @@ public class HodController {
     }
 
     @GetMapping("/hod/studentlist")
-    public String hodStudentList(HttpSession session, Model model) {
+    public String hodStudentList(@RequestParam(required = false) String batch,
+                                 HttpSession session, Model model) {
         HodEntity hod = (HodEntity) session.getAttribute("hod");
         if (hod == null) return "redirect:/hodlogin";
-        
-        List<StudentEntity> studentList = studentRepository.findByBranch(hod.getBranch());
+
+        List<StudentEntity> studentList;
+        if (batch != null && !batch.isEmpty()) {
+            studentList = studentRepository.findByBranchAndBatch(hod.getBranch(), batch);
+        } else {
+            studentList = studentRepository.findByBranch(hod.getBranch());
+        }
+
         List<FacultyEntity> facultyList = facultyRepository.findAllByBranch(hod.getBranch());
         model.addAttribute("studentList", studentList);
         model.addAttribute("hod", hod);
         model.addAttribute("studentCount", studentList.size());
         model.addAttribute("facultyCount", facultyList.size());
+        model.addAttribute("batches", batchRepository.findAll());      // all batches for dropdown
+        model.addAttribute("selectedBatch", batch);                   // currently selected
+
         return "hodStudentList";
     }
-   
     // -------------------- List All HODs --------------------
     @GetMapping("/listhod")
     public String listAllHods(Model model) {

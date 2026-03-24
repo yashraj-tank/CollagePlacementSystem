@@ -41,7 +41,7 @@
 
                 <!-- Placement Status -->
                 <div class="chart-card">
-                    <h3>Placement Status</h3>
+                    <h3>Placement Ready Status</h3>
                     <canvas id="placementStatusChart"></canvas>
                 </div>
             </div>

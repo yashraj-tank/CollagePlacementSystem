@@ -12,7 +12,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body {
+       body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('images1/deim.jpeg') no-repeat center center fixed;

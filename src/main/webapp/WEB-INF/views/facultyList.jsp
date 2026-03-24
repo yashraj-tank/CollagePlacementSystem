@@ -7,161 +7,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty List</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-        }
-
-        /* Main content area – offset by sidebar and header */
-        .main-content {
-            margin-left: 250px;
-            margin-top: 70px;
-            padding: 30px;
-            transition: margin-left 0.3s;
-            min-height: calc(100vh - 70px);
-            background-color: #f4f6f9;
-        }
-
-        .container {
-            background-color: #3498db;
-            color: #fff;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #fff;
-        }
-
-        .add-btn {
-            display: inline-block;
-            background-color: #27ae60;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .add-btn:hover {
-            background-color: #229954;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            color: #333;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        th {
-            background-color: #2980b9;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-
-        td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 2px;
-            border-radius: 3px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-            color: white;
-        }
-
-        .btn-edit {
-            background-color: #f39c12;
-        }
-
-        .btn-edit:hover {
-            background-color: #e67e22;
-        }
-
-        .btn-delete {
-            background-color: #e74c3c;
-        }
-
-        .btn-delete:hover {
-            background-color: #c0392b;
-        }
-
-        .nav-links {
-            text-align: center;
-            margin-top: 25px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 15px;
-            padding: 8px 16px;
-            background-color: rgba(255,255,255,0.2);
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-links a:hover {
-            background-color: rgba(255,255,255,0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-content {
-                margin-left: 0;
-                padding: 20px;
-            }
-            .container {
-                padding: 20px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; }
+        .main-content { margin-left: 250px; margin-top: 70px; padding: 30px; background-color: #f4f6f9; min-height: calc(100vh - 70px); }
+        .container { background-color: #3498db; color: #fff; padding: 30px 40px; border-radius: 10px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); width: 100%; max-width: 1000px; margin: 0 auto; }
+        h2 { text-align: center; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+        .add-btn { display: inline-block; background-color: #27ae60; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-bottom: 20px; font-weight: bold; transition: background-color 0.3s; }
+        .add-btn:hover { background-color: #229954; }
+        .filter-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-bar select, .filter-bar button, .filter-bar a { padding: 8px 12px; border-radius: 5px; border: none; cursor: pointer; }
+        .filter-bar button { background: #2980b9; color: white; }
+        .filter-bar a { background: #95a5a6; color: white; text-decoration: none; display: inline-block; }
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background-color: #fff; color: #333; border-radius: 5px; overflow: hidden; }
+        th { background-color: #2980b9; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+        tr:hover { background-color: #f5f5f5; }
+        .btn { display: inline-block; padding: 5px 10px; margin: 2px; border-radius: 3px; text-decoration: none; font-size: 13px; font-weight: bold; color: white; }
+        .btn-edit { background-color: #f39c12; }
+        .btn-edit:hover { background-color: #e67e22; }
+        .btn-delete { background-color: #e74c3c; }
+        .btn-delete:hover { background-color: #c0392b; }
+        .nav-links { text-align: center; margin-top: 25px; }
+        .nav-links a { color: #fff; text-decoration: none; font-weight: bold; margin: 0 15px; padding: 8px 16px; background-color: rgba(255,255,255,0.2); border-radius: 5px; transition: background-color 0.3s; }
+        .nav-links a:hover { background-color: rgba(255,255,255,0.3); }
+        @media (max-width: 768px) { .main-content { margin-left: 0; padding: 20px; } .container { padding: 20px; } }
     </style>
 </head>
 <body>
-    <!-- Include Header -->
     <jsp:include page="header.jsp" />
-
-    <!-- Include Sidebar -->
     <jsp:include page="leftsidebar.jsp" />
 
-    <!-- Main Content -->
     <div class="main-content">
         <div class="container">
             <h2>Faculty List</h2>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <form method="get" action="${pageContext.request.contextPath}/listfaculty" style="display: flex; gap: 10px;">
+                    <select name="branch">
+                        <option value="">-- All Branches --</option>
+                        <c:forEach var="branchItem" items="${branches}">
+                            <option value="${branchItem.branchName}" ${selectedBranch == branchItem.branchName ? 'selected' : ''}>${branchItem.branchName}</option>
+                        </c:forEach>
+                    </select>
+                    <button type="submit">Filter</button>
+                </form>
+                <c:if test="${not empty selectedBranch}">
+                    <a href="${pageContext.request.contextPath}/listfaculty">Clear Filter</a>
+                </c:if>
+            </div>
 
             <div style="text-align: right;">
                 <a href="${pageContext.request.contextPath}/facultysignup" class="add-btn">+ Add Faculty</a>

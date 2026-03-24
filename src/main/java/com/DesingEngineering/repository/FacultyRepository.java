@@ -16,4 +16,7 @@ public interface FacultyRepository extends JpaRepository<FacultyEntity, Integer>
 
     boolean existsByFacultyEmail(String facultyEmail);
 
+    List<FacultyEntity> findByBranch(String branch);
+    
+    
 }

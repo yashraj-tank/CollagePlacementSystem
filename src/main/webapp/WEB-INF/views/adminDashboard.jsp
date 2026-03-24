@@ -408,7 +408,7 @@
                 <i>🏫</i>
                 Manage Branches
             </a>
-            <a href="#" class="action-btn">
+            <a href="/admin/reports" class="action-btn">
                 <i>📊</i>
                 Generate Report
             </a>

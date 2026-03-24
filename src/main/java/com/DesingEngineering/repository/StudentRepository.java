@@ -19,7 +19,8 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Integer>
     List<StudentEntity> findByBatch(String batch);
     List<StudentEntity> findByBranchAndBatch(String branch, String batch);
     List<StudentEntity> findByBranchAndFaculty(String branch, String facultyName);
-    List<StudentEntity> findByBranchAndFacultyIsNull(String branch);
+    List<StudentEntity> findByBranchAndFacultyIsNull(String branch);   
+    List<StudentEntity> findByBranchAndFacultyAndBatch(String branch, String facultyName, String batch);
 
     // ========== Counts ==========
     long countByActive(boolean active);

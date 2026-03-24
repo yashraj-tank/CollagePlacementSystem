@@ -11,6 +11,10 @@
         .main-content { margin-left: 250px; margin-top: 70px; padding: 30px; background-color: #f4f6f9; min-height: calc(100vh - 70px); }
         .container { background-color: #3498db; color: #fff; padding: 30px; border-radius: 15px; max-width: 1200px; margin: 0 auto; }
         h2 { text-align: center; margin-bottom: 25px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 15px; }
+        .filter-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-bar select, .filter-bar button, .filter-bar a { padding: 8px 12px; border-radius: 5px; border: none; cursor: pointer; }
+        .filter-bar button { background: #2980b9; color: white; }
+        .filter-bar a { background: #95a5a6; color: white; text-decoration: none; display: inline-block; }
         table { width: 100%; border-collapse: collapse; background: white; color: #333; border-radius: 10px; overflow: hidden; margin-top: 20px; }
         th { background: #2980b9; color: white; padding: 12px; text-align: left; }
         td { padding: 10px; border-bottom: 1px solid #ddd; }
@@ -26,6 +30,23 @@
     <div class="main-content">
         <div class="container">
             <h2>My Students (${studentCount})</h2>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <form method="get" action="${pageContext.request.contextPath}/faculty/students" style="display: flex; gap: 10px;">
+                    <select name="batch">
+                        <option value="">-- All Batches --</option>
+                        <c:forEach var="batchItem" items="${batches}">
+                            <option value="${batchItem.batchYear}" ${selectedBatch == batchItem.batchYear ? 'selected' : ''}>${batchItem.batchYear}</option>
+                        </c:forEach>
+                    </select>
+                    <button type="submit">Filter</button>
+                </form>
+                <c:if test="${not empty selectedBatch}">
+                    <a href="${pageContext.request.contextPath}/faculty/students">Clear Filter</a>
+                </c:if>
+            </div>
+
             <c:choose>
                 <c:when test="${empty studentList}">
                     <p>No students assigned to you yet.</p>
@@ -41,7 +62,8 @@
                                 <th>Branch</th>
                                 <th>Batch</th>
                                 <th>Actions</th>
-                            </thead>
+                            </tr>
+                        </thead>
                         <tbody>
                             <c:forEach var="student" items="${studentList}">
                                 <tr>
@@ -52,8 +74,9 @@
                                     <td>${student.branch}</td>
                                     <td>${student.batch}</td>
                                     <td>
-    								<a href="${pageContext.request.contextPath}/faculty/student/${student.studentId}" class="btn">View Profile</a>
-                               		</tr>
+                                        <a href="${pageContext.request.contextPath}/faculty/student/${student.studentId}" class="btn-back" style="background:#27ae60;">View Profile</a>
+                                    </td>
+                                </tr>
                             </c:forEach>
                         </tbody>
                     </table>
