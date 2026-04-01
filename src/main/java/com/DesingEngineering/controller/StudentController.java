@@ -139,7 +139,7 @@ public class StudentController {
         StudentEntity student = studentRepository.findByEmail(email);
         if (student == null) {
             model.addAttribute("error", "Email not registered!");
-            return "ForgotPassword";
+            return "StudentForgetP";
         }
 
         String otp = String.valueOf((int) (Math.random() * 900000) + 100000);
