@@ -67,7 +67,7 @@ public class StudentController {
         return "StudentLogin";
     }
 
-    @PostMapping("savestudent")
+    @PostMapping("savestudent")	
     public String savestudent(StudentEntity studentEntity, MultipartFile profilePic) {
         studentEntity.setActive(true);
         studentEntity.setCreatedAt(LocalDate.now());
